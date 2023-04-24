@@ -1,21 +1,19 @@
 {
-  "readmeUrl": "https://raw.githubusercontent.com/cveinnt/cveinnt/master/README.md",
-  "title": "LiveTerm",
-  "name": "John Doe",
-  "ascii": "liveterm",
+  "readmeUrl": "https://raw.githubusercontent.com/bigsk1/LiveTerm/main/README.md",
+  "title": "bigsk1",
+  "name": "bigsk1",
+  "ascii": "bigsk1",
+  "homepage_url": "https://thekratomsyndicate.com",
   "social": {
-    "github": "github",
-    "linkedin": "linkedin"
+    "github": "bigsk1",
+    "twitter": "KratomSyndicate",
+    "nostr": "https://nostr.directory/p/kratomsyndicate",
+    "github_docs": "https://bigsk1.github.io/"
   },
-  "email": "contact@email.com",
-  "ps1_hostname": "liveterm",
+  "email": "32640296+bigsk1@users.noreply.github.com",
+  "ps1_hostname": "bigsk1",
   "ps1_username": "visitor",
-  "repo": "https://github.com/Cveinnt/LiveTerm",
-  "resume_url": "https://upload.wikimedia.org/wikipedia/commons/c/cc/Resume.pdf",
-  "donate_urls": {
-    "paypal": "https://paypal.me/cveinnt",
-    "patreon": "https://patreon.com/cveinnt"
-  },
+  "repo": "https://github.com/bigsk1/LiveTerm",
   "colors": {
     "light": {
       "background": "#FBF1C9",

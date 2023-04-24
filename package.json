@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "license": "MIT",
   "author": {
-    "name": "Vincent Wu",
-    "url": "https://cveinnt.com",
-    "email": "contact@wensenwu.com"
+    "name": "TKS",
+    "url": "https://github.com/bigsk1/LiveTerm",
+    "email": "32640296+bigsk1@users.noreply.github.com"
   },
   "scripts": {
     "dev": "next dev",
@@ -22,8 +22,9 @@
     "react-icons": "^4.3.1"
   },
   "devDependencies": {
+    "@types/next": "^9.0.0",
     "@types/node": "17.0.32",
-    "@types/react": "18.0.9",
+    "@types/react": "^18.0.9",
     "@types/react-dom": "18.0.3",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",
