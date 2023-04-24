@@ -25,5 +25,6 @@ services:
     ports:
       - '3006:3000'
     command: npm start
+    restart: unless-stopped
     security_opt:
-      - "no-new-privileges"
+      - no-new-privileges:true
