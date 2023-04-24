@@ -16,7 +16,7 @@ COPY . .
 FROM base as production
 
 COPY --from=development /home/node/app/node_modules /home/node/app/node_modules
-RUN npm ci --only=production
+RUN npm install
 COPY . .
 ENV NODE_PATH=./build
 RUN npm run build
