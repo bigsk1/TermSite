@@ -1,5 +1,5 @@
 {
-  "readmeUrl": "https://raw.githubusercontent.com/bigsk1/LiveTerm/main/README.md",
+  "readmeUrl": "https://raw.githubusercontent.com/bigsk1/TermSite/main/README.md",
   "title": "bigsk1",
   "name": "bigsk1",
   "ascii": "bigsk1",
@@ -13,7 +13,7 @@
   "email": "32640296+bigsk1@users.noreply.github.com",
   "ps1_hostname": "bigsk1",
   "ps1_username": "visitor",
-  "repo": "https://github.com/bigsk1/LiveTerm",
+  "repo": "https://github.com/bigsk1/TermSite",
   "colors": {
     "light": {
       "background": "#FBF1C9",

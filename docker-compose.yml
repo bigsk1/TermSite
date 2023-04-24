@@ -12,3 +12,14 @@ services:
     volumes:
       - ./src/:/home/node/app/src
     command: npm run dev
+
+  bigsk1-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: production
+    expose:
+      - '3006'
+    ports:
+      - '3006:3000'
+    command: npm start

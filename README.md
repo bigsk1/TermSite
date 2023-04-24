@@ -1,10 +1,8 @@
-# [💻 TermSite - build terminal styled websites in minutes!]
+# 💻 TermSite - build a terminal styled website
 
 Highly customizable, easy-to-use, and minimal terminal styled website template, powered by Next.js.
 
-Building a simple website with LiveTerm only takes **minutes**, and you only need to work with **one** file: `config.json`. After you cloned this repository, simply run `yarn install && yarn dev` and start editing `config.json` to build your website!
-
-LiveTerm can be used to build a variety of websites:
+Building a simple website with TermSite and you only need to work with the file: `config.json`. 
 
 
 Feel free to play with the web demo above!
@@ -13,16 +11,8 @@ Feel free to play with the web demo above!
 
 <p align="center">
 <img src="./demo/demo.gif" width="600"><br>
-<strong>LiveTerm with different themes</strong>
+<strong>TermSite with different themes</strong>
 </p>
-
-
-## 🚀 Ship your LiveTerm site in less than 5 minutes
-
-LiveTerm requires the `yarn` package manager. You can install `yarn` [here](https://classic.yarnpkg.com/lang/en/docs/install/).
-
-Simply run the following commmand in your terminal:
-
 
 
 ### Docker Usage
@@ -37,7 +27,7 @@ docker-compose up -d
 
 ### Basic Configuration
 
-90% of LiveTerm's configurations are done through the `config.json` file.
+90% of TermSite's configurations are done through the `config.json` file.
 
 ```javascript
 {
