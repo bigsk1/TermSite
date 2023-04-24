@@ -1,19 +1,21 @@
 version: "3.7"
+
 services:
-  bigsk1:
+  termsite:
     build:
       context: .
       dockerfile: Dockerfile
-      target: base
+      target: development
     expose:
       - '3005'
     ports:
       - '3005:3000'
     volumes:
       - ./src/:/home/node/app/src
+      - /home/node/app/node_modules
     command: npm run dev
 
-  bigsk1-prod:
+  termsite-prod:
     build:
       context: .
       dockerfile: Dockerfile
@@ -23,3 +25,5 @@ services:
     ports:
       - '3006:3000'
     command: npm start
+    security_opt:
+      - "no-new-privileges"
