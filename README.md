@@ -4,23 +4,30 @@ Highly customizable, easy-to-use, and minimal terminal styled website template, 
 
 Building a simple website with TermSite and you only need to work with the file: `config.json`. 
 
+Made from Fork at https://github.com/Cveinnt/LiveTerm
 
-Feel free to play with the web demo above!
+Feel free to play with the site here https://bigsk1.vercel.app/
 
 ## 📸 Showcase
 
 <p align="center">
-<img src="./demo/demo.gif" width="600"><br>
-<strong>TermSite with different themes</strong>
+<img src="./demo/sk1.jpg" width="600"><br>
+<strong>personal term site</strong>
 </p>
 
 
 ### Docker Usage
 
-First, clone the project and edit `config.json` to your liking. Then run the following to start the container in the background:
+First, clone the project and edit `config.json` to your liking. Then run the following to start the container in DEV mode uses (port 3005)
 
 ```shell
-docker-compose up -d
+docker-compose up -d --build termsite
+```
+
+To run docker container in production mode uses (port 3000)
+
+```bash
+docker-compose up -d --build termsite-prod
 ```
 
 ## 📄 Configuration
@@ -83,8 +90,9 @@ You can install `vercel` cli and follow the instruction [here](https://vercel.co
 
 You can also connect your github account to vercel and have vercel automatically deploy the github repository for you.
 
+
 ## Credit
 
 Based on M4TT72's awesome [Terminal](https://github.com/m4tt72/terminal).
 
-Made from Forked Clone of https://github.com/Cveinnt/LiveTerm
+Made from Fork at https://github.com/Cveinnt/LiveTerm
