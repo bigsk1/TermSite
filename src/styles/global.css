@@ -22,8 +22,10 @@ div#__next > div {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 3px;
+  height: 3px;
+  min-width: 3px;
+  min-height: 3px;
 }
 
 ::-webkit-scrollbar-track {
@@ -38,4 +40,20 @@ div#__next > div {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #ff8037;
+}
+
+@media (max-width: 550px) {
+  * {
+    font-size: 0.945em;
+  }
+}
+
+@media (max-width: 450px) {
+  html,
+  body,
+  body > div:first-child,
+  div#__next,
+  div#__next > div {
+    min-width: 425px;
+  }
 }

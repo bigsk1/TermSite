@@ -85,21 +85,22 @@ export const Input = ({
       </label>
 
       <input
-        ref={inputRef}
-        id="prompt"
-        type="text"
-        className={`bg-light-background dark:bg-dark-background focus:outline-none flex-grow ${
-          commandExists(command) || command === ''
-            ? 'text-dark-green'
-            : 'text-dark-red'
-        }`}
-        value={command}
-        onChange={onChange}
-        autoFocus
-        onKeyDown={onSubmit}
-        autoComplete="off"
-        spellCheck="false"
-      />
+  ref={inputRef}
+  id="prompt"
+  type="text"
+  className={`bg-light-background dark:bg-dark-background focus:outline-none flex-grow text-xs md:text-base ${
+    commandExists(command) || command === ''
+      ? 'text-dark-green'
+      : 'text-dark-red'
+  }`}
+  value={command}
+  onChange={onChange}
+  autoFocus
+  onKeyDown={onSubmit}
+  autoComplete="off"
+  spellCheck="false"
+  style={{ fontSize: '16px' }}
+  />
     </div>
   );
 };
