@@ -4,7 +4,6 @@ Highly customizable, easy-to-use, and minimal terminal styled website template, 
 
 Building a simple website with TermSite and you only need to work with the file: `config.json`. 
 
-Made from Fork at https://github.com/Cveinnt/LiveTerm
 
 Feel free to play with the site here https://bigsk1.vercel.app/
 
