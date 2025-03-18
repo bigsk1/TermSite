@@ -17,8 +17,37 @@ export const projects = async (args: string[]): Promise<string> => {
 };
 
 export const quote = async (args: string[]): Promise<string> => {
-  const data = await getQuote();
-  return data.quote;
+  // Help option
+  if (args.includes('--help') || args.includes('-h')) {
+    return `
+Usage: quote [option]
+
+Options:
+  --help, -h    Show this help message
+  --dev         Display programming/developer quotes
+  --motiv       Display motivational quotes
+  --inspire     Same as --motiv
+  
+Examples:
+  quote         Display a random quote
+  quote --dev   Display a programming quote
+`;
+  }
+
+  try {
+    const data = await getQuote();
+    
+    // Add a hint about the source - whether online or offline
+    let hint = '';
+    if (data.source === 'fallback') {
+      hint = '\n\n<span class="text-light-gray dark:text-dark-gray text-sm">(Using offline quotes - network may be unavailable)</span>';
+    }
+    
+    return data.quote + hint;
+  } catch (error) {
+    console.error('Error in quote command:', error);
+    return 'Failed to fetch a quote. Please try again later.';
+  }
 };
 
 export const readme = async (args: string[]): Promise<string> => {

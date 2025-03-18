@@ -22,6 +22,8 @@ The terminal accepts text commands followed by Enter. Use your keyboard to type 
 | `about` | Displays brief information about the author |
 | `sumfetch` | Shows a summary of information |
 | `banner` | Displays the welcome banner |
+| `quote` | Shows a random inspirational quote |
+| `crypto` | Displays cryptocurrency prices |
 
 ### Navigation Commands
 
@@ -58,6 +60,7 @@ The terminal accepts text commands followed by Enter. Use your keyboard to type 
 |---------|-------------|
 | `matrix [opacity]` | Toggles Matrix-style background effect with optional opacity (0.0-1.0) |
 | `matrix off` | Turns off the Matrix effect |
+| `theme [theme_name]` | Changes the terminal's color theme |
 
 ### Fun Commands
 
@@ -66,6 +69,8 @@ The terminal accepts text commands followed by Enter. Use your keyboard to type 
 | `snake` | Snake game (currently under maintenance) |
 | `forkbomb` | Simulates a fork bomb attack (requires `--force` flag) |
 | `rm -rf /` | Simulates the system deletion command (safe to use; just a visual effect) |
+| `weather [city]` | Shows weather forecast for the specified city |
+| `chat [message]` | Talk with a simple AI assistant |
 
 ## Command Examples
 
@@ -76,19 +81,75 @@ help                 // Shows all available commands
 google termsite      // Searches Google for "termsite"
 echo Hello World     // Displays "Hello World"
 matrix 0.1           // Enables Matrix effect with 0.1 opacity
+theme bw             // Changes to black and white theme
 forkbomb --force     // Simulates a fork bomb attack
+weather new york     // Shows weather for New York
+quote                // Shows an inspirational quote
+crypto btc eth       // Shows Bitcoin and Ethereum prices
 ```
 
 ## Visual Effects
 
 ### Matrix Effect
 
-The `matrix` command enables a visual effect similar to the digital rain from The Matrix movie. You can control the opacity of the effect:
+The `matrix` command enables a visual effect similar to the digital rain from The Matrix movie. You can control the opacity of the effect and set it to show only symbols without changing the background:
 
 ```
-matrix        // Enables with default opacity (0.05)
-matrix 0.2    // Enables with 0.2 opacity
-matrix off    // Disables the effect
+matrix                // Enables with default opacity
+matrix 0.2            // Enables with 0.2 opacity
+matrix transparent    // Shows only symbols, keeps current background
+matrix 0.3 nobg       // Shows only symbols with 0.3 opacity
+matrix symbols        // Alternative syntax for transparent mode
+matrix off            // Disables the effect
+```
+
+When using the transparent mode (`transparent`, `nobg`, or `symbols` option), the Matrix effect will only show the falling green characters without darkening the background, which works especially well with custom themes like `theme bw` or `theme green`.
+
+### Theme Command
+
+The `theme` command allows you to change the terminal's color scheme:
+
+```
+theme            // Shows available themes
+theme bw         // Black and white theme
+theme green      // Matrix-like green on black theme
+theme blue       // Blue theme
+theme retro      // Amber/orange terminal theme (like old computers)
+theme midnight   // Dark blue with light text
+theme default    // Revert to the default theme
+```
+
+## API-Based Commands
+
+### Cryptocurrency Price Command
+
+The `crypto` command displays current prices for various cryptocurrencies:
+
+```
+crypto btc       // Shows Bitcoin price
+crypto eth sol   // Shows Ethereum and Solana prices
+crypto list      // Shows all available cryptocurrencies
+```
+
+Supported cryptocurrencies include Bitcoin (btc), Ethereum (eth), Solana (sol), Binance Coin (bnb), XRP (xrp), Dogecoin (doge), Cardano (ada), Polkadot (dot), and Litecoin (ltc). You can use either the ticker symbol (like "btc") or the full name (like "bitcoin").
+
+### Quote Command
+
+The `quote` command displays random inspirational quotes. It fetches quotes from an API when online, and uses a fallback database when offline:
+
+```
+quote            // Shows a random quote
+quote --help     // Displays help information for the quote command
+```
+
+### Weather Command
+
+The `weather` command shows the current weather conditions and forecast for a specified location:
+
+```
+weather paris    // Shows weather for Paris
+weather new york // Shows weather for New York
+weather          // Shows usage instructions
 ```
 
 ## Fun Simulations

@@ -175,40 +175,43 @@ export const matrix = async (args: string[]): Promise<string> => {
   // Check for 'off' argument
   if (args.length > 0 && args[0].toLowerCase() === 'off') {
     // Dispatch event to turn off matrix
-    window.dispatchEvent(
-      new CustomEvent('toggleMatrix', {
-        detail: { opacity: 'off' },
-      }),
-    );
+    window.dispatchEvent(new CustomEvent('toggleMatrix', { 
+      detail: { opacity: 'off' } 
+    }));
     return 'Matrix mode disabled!';
   }
-
+  
+  // Check for transparent argument (symbols only, no bg)
+  const transparent = args.includes('transparent') || args.includes('nobg') || args.includes('symbols');
+  
   // Check for opacity argument (between 0.0-1.0)
   let opacity = 0.05;
-  if (args.length > 0) {
-    const parsedOpacity = parseFloat(args[0]);
+  for (const arg of args) {
+    const parsedOpacity = parseFloat(arg);
     if (!isNaN(parsedOpacity) && parsedOpacity >= 0 && parsedOpacity <= 1) {
       opacity = parsedOpacity;
+      break;
     }
   }
-
+  
   // Dispatch event to toggle matrix with specified opacity
-  window.dispatchEvent(
-    new CustomEvent('toggleMatrix', {
-      detail: { opacity },
-    }),
-  );
-
+  window.dispatchEvent(new CustomEvent('toggleMatrix', { 
+    detail: { opacity, transparent } 
+  }));
+  
   return `Matrix mode ${opacity === 0 ? 'disabled' : 'enabled'}!
+${transparent ? 'Transparent background mode activated (symbols only).' : ''}
 
 Usage:
-  matrix [opacity]
+  matrix [opacity] [transparent|nobg|symbols]
   matrix off (to disable)
 
 Examples:
-  matrix      - Enable with default opacity
-  matrix 0.1  - Enable with custom opacity (0.0-1.0)
-  matrix off  - Disable matrix effect`;
+  matrix              - Enable with default opacity
+  matrix 0.1          - Enable with custom opacity (0.0-1.0)
+  matrix transparent  - Enable with transparent background (symbols only)
+  matrix 0.2 nobg     - Symbols only with 0.2 opacity
+  matrix off          - Disable matrix effect`;
 };
 
 // Dangerous command - fake system crash
@@ -459,4 +462,43 @@ Options:
   -f, --force           Ignore nonexistent files and arguments, never prompt
   
 Note: This is a simulated command that doesn't actually delete files.`;
+};
+
+// Theme command
+export const theme = async (args: string[]): Promise<string> => {
+  const availableThemes = [
+    'default',    // Original theme
+    'bw',         // Black and white
+    'green',      // Matrix-like green on black
+    'blue',       // Blue theme
+    'retro',      // Amber/orange terminal
+    'midnight'    // Dark blue with light text
+  ];
+
+  // If no arguments or help requested, show the available themes
+  if (args.length === 0 || args[0] === 'help' || args[0] === '--help' || args[0] === '-h') {
+    return `Usage: theme [theme_name]
+
+Available themes:
+${availableThemes.map(theme => `- ${theme}`).join('\n')}
+
+Examples:
+  theme bw       # Switch to black and white theme
+  theme green    # Switch to Matrix-like green theme
+  theme default  # Reset to default theme`;
+  }
+
+  const requestedTheme = args[0].toLowerCase();
+  
+  if (!availableThemes.includes(requestedTheme)) {
+    return `Theme "${requestedTheme}" not found. Available themes are: ${availableThemes.join(', ')}`;
+  }
+
+  // Dispatch event to change theme
+  window.dispatchEvent(new CustomEvent('changeTheme', { 
+    detail: { theme: requestedTheme } 
+  }));
+
+  return `Theme changed to "${requestedTheme}".
+You can use 'theme default' to revert to the original theme.`;
 };
