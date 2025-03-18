@@ -35,3 +35,21 @@ yarn-error.log*
 # Ignore specific files with formatting issues
 src/utils/bin/crypto_commands.ts
 src/utils/api.ts
+src/components/Cursor.tsx
+src/components/MatrixBackground.tsx
+src/components/SyntaxHighlighter.tsx
+src/components/TestInput.tsx
+src/components/Typewriter.tsx
+src/components/games/Snake.tsx
+src/components/history/History.tsx
+src/components/history/hook.ts
+src/components/input.tsx
+src/contexts/ContainerContext.tsx
+src/contexts/HistoryContext.tsx
+src/contexts/ShellContext.tsx
+src/pages/_app.tsx
+src/pages/index.tsx
+src/utils/bin/api_commands.ts
+src/utils/bin/commands.ts
+src/utils/parseAndHighlightCode.tsx
+src/utils/shell.ts
