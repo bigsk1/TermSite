@@ -1,13 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 
 interface MatrixBackgroundProps {
-  enabled: boolean;
   opacity?: number;
 }
 
 const MatrixBackground: React.FC<MatrixBackgroundProps> = ({ 
-  enabled = true,
-  opacity = 0.15
+  opacity = 0.05
 }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   
@@ -50,16 +48,6 @@ const MatrixBackground: React.FC<MatrixBackgroundProps> = ({
     
     // Draw the matrix
     const draw = () => {
-      if (!enabled) {
-        if (intervalId) {
-          clearInterval(intervalId);
-          intervalId = null;
-        }
-        // Clear canvas when disabled
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        return;
-      }
-      
       // Semi-transparent background to create trail effect
       // Using a more transparent background to let content show through
       ctx.fillStyle = `rgba(0, 0, 0, 0.03)`;
@@ -97,27 +85,22 @@ const MatrixBackground: React.FC<MatrixBackgroundProps> = ({
       }
     };
     
-    // Animation loop
-    if (enabled) {
-      intervalId = setInterval(draw, 33);
-    } else {
-      // Clear canvas when disabled
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
+    // Animation loop - always enabled, opacity controls visibility
+    intervalId = setInterval(draw, 33);
     
     // Cleanup
     return () => {
       if (intervalId) clearInterval(intervalId);
       window.removeEventListener('resize', setCanvasSize);
     };
-  }, [enabled, opacity]);
+  }, []);
   
   return (
     <canvas
       ref={canvasRef}
       className="fixed top-0 left-0 w-full h-full pointer-events-none z-0"
       style={{ 
-        opacity: enabled ? opacity : 0,
+        opacity,
         transition: 'opacity 0.5s ease-in-out'
       }}
     />
