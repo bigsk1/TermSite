@@ -31,3 +31,7 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# Ignore specific files with formatting issues
+src/utils/bin/crypto_commands.ts
+src/utils/api.ts
