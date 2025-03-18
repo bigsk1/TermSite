@@ -85,23 +85,23 @@ Alternative names like "bitcoin" or "ethereum" also work.
   if (args.includes('list')) {
     let cryptoList = 'Available cryptocurrencies:\n\n';
     
-    Object.entries(cryptoMap).reduce((acc, [shortName, fullName]) => {
-      if (!acc[fullName]) {
-        acc[fullName] = [];
+    // Create a map to group aliases by coin name
+    const coinGroups = {};
+    
+    // Group all aliases by their full coin name
+    Object.entries(cryptoMap).forEach(([shortName, fullName]) => {
+      if (!coinGroups[fullName]) {
+        coinGroups[fullName] = [];
       }
-      acc[fullName].push(shortName);
-      return acc;
-    }, {});
+      coinGroups[fullName].push(shortName);
+    });
     
-    const uniqueCoins = [...new Set(Object.values(cryptoMap))];
-    uniqueCoins.sort();
+    // Get sorted list of unique coin names
+    const uniqueCoins = Object.keys(coinGroups).sort();
     
+    // Format the output
     cryptoList += uniqueCoins.map(coin => {
-      const aliases = Object.entries(cryptoMap)
-        .filter(([_, value]) => value === coin)
-        .map(([key, _]) => key);
-      
-      return `${coin} (${aliases.join(', ')})`;
+      return `${coin} (${coinGroups[coin].join(', ')})`;
     }).join('\n');
     
     return cryptoList;
