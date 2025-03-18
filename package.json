@@ -21,13 +21,15 @@
     "next": "14.2.21",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "^4.3.1"
+    "react-icons": "^4.3.1",
+    "react-syntax-highlighter": "^15.6.1"
   },
   "devDependencies": {
     "@types/next": "^9.0.0",
     "@types/node": "17.0.32",
     "@types/react": "^18.0.9",
     "@types/react-dom": "18.0.3",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "@typescript-eslint/eslint-plugin": "^5.23.0",
     "@typescript-eslint/parser": "^5.23.0",
     "autoprefixer": "^10.4.7",

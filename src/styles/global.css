@@ -57,3 +57,88 @@ div#__next > div {
     min-width: 425px;
   }
 }
+
+/* Chat UI Styles */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 1rem;
+  max-width: 100%;
+}
+
+.chat-question {
+  color: #88c0d0;
+  margin-bottom: 4px;
+}
+
+.chat-answer {
+  color: #a3be8c;
+  margin-left: 10px;
+  border-left: 2px solid #434c5e;
+  padding-left: 10px;
+}
+
+/* Improved scrollbar for code blocks */
+pre::-webkit-scrollbar {
+  height: 8px;
+  width: 8px;
+}
+
+pre::-webkit-scrollbar-track {
+  background: #2e3440;
+}
+
+pre::-webkit-scrollbar-thumb {
+  background: #4c566a;
+  border-radius: 4px;
+}
+
+pre::-webkit-scrollbar-thumb:hover {
+  background: #5e81ac;
+}
+
+/* Improved selection styling */
+::selection {
+  background: rgba(94, 129, 172, 0.6);
+  color: #eceff4;
+}
+
+/* Animated cursor blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.cursor-blink {
+  animation: blink 1s infinite;
+}
+
+/* Typewriter cursor */
+.typewriter-cursor {
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  background-color: currentColor;
+  margin-left: 2px;
+  animation: blink 1s infinite;
+}
+
+/* Game container styles */
+.snake-game {
+  background-color: #2e3440;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 20px 0;
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Hide default caret/cursor */
+.caret-transparent {
+  caret-color: transparent !important;
+}

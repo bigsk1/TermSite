@@ -22,15 +22,39 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
     setLastCommandIndex,
   } = useHistory([]);
 
-  const init = React.useCallback(() => setHistory(banner()), []);
+  // Use a ref to track if initialization has already happened
+  const initDoneRef = React.useRef(false);
 
+  const init = React.useCallback(() => {
+    // Only initialize once
+    if (initDoneRef.current) return;
+    
+    const bannerOutput = banner();
+    if (typeof bannerOutput === 'string') {
+      setHistory({
+        command: '',
+        output: bannerOutput
+      });
+    } else {
+      console.error('Banner function returned non-string value:', bannerOutput);
+      setHistory({
+        command: '',
+        output: 'Welcome to Terminal. Type "help" to see available commands.'
+      });
+    }
+    
+    // Mark initialization as done
+    initDoneRef.current = true;
+  }, [setHistory]);
+
+  // Only run init once, with no dependencies to prevent re-runs
   React.useEffect(() => {
     init();
-  }, [init]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Empty dependency array to only run once
 
   React.useEffect(() => {
     if (inputRef.current) {
-      inputRef.current.scrollIntoView();
       inputRef.current.focus({ preventScroll: true });
     }
   }, [history]);
@@ -41,7 +65,7 @@ const IndexPage: React.FC<IndexPageProps> = ({ inputRef }) => {
         <title>{config.title}</title>
       </Head>
 
-      <div className="p-8 overflow-hidden h-full border-2 rounded border-light-yellow dark:border-dark-yellow">
+      <div className="p-8 overflow-hidden h-full border-2 rounded border-light-yellow dark:border-dark-yellow bg-[#2E3440] text-[#E5E9F0]">
         <div ref={containerRef} className="overflow-y-auto h-full">
           <History history={history} />
 

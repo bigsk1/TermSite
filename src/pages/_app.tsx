@@ -1,42 +1,71 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../styles/global.css';
 import Head from 'next/head';
 import type { AppProps } from 'next/app';
 import { Analytics } from '@vercel/analytics/react';
+import { useRouter } from 'next/router';
+import dynamic from 'next/dynamic';
+
+// Dynamically import the MatrixBackground component
+const MatrixBackground = dynamic(() => import('../components/MatrixBackground'), {
+  ssr: false,
+});
 
 const App = ({ Component, pageProps }: AppProps) => {
-  const inputRef = React.useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
+  const [matrixEnabled, setMatrixEnabled] = useState(false);
+  const [matrixOpacity, setMatrixOpacity] = useState(0.05);
 
-  const onClickAnywhere = () => {
-    inputRef.current.focus();
-  };
+  // Handle clicks anywhere to focus on input
+  useEffect(() => {
+    document.addEventListener('click', () => {
+      inputRef.current?.focus();
+    });
+  }, []);
+
+  // Handle matrix background toggle
+  useEffect(() => {
+    const handleToggleMatrix = (event: CustomEvent) => {
+      const { opacity } = event.detail;
+      
+      // Check if matrix should be turned off
+      if (event.detail && typeof event.detail.opacity === 'string' && 
+          event.detail.opacity.toLowerCase() === 'off') {
+        setMatrixEnabled(false);
+        return;
+      }
+      
+      // Set opacity if provided
+      if (opacity && typeof opacity === 'number') {
+        setMatrixOpacity(opacity);
+        setMatrixEnabled(true);
+      } else {
+        // Toggle if no specific instruction
+        setMatrixEnabled(prev => !prev);
+      }
+    };
+    
+    window.addEventListener('toggleMatrix', handleToggleMatrix as EventListener);
+    
+    return () => {
+      window.removeEventListener('toggleMatrix', handleToggleMatrix as EventListener);
+    };
+  }, []);
 
   return (
     <>
       <Head>
-        <meta
-          name="viewport"
-          content="initial-scale=1.0, width=device-width, viewport-fit=cover"
-          key="viewport"
-          maximum-scale="1"
-        />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-        <meta name="msapplication-TileColor" content="#da532c" />
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-
-      <div
-        className="text-light-foreground dark:text-dark-foreground min-w-0 text-xs md:min-w-full md:text-base dark"
-        onClick={onClickAnywhere}
-      >
-        <main className="bg-light-background dark:bg-dark-background w-full h-full p-2">
-          <Component {...pageProps} inputRef={inputRef} />
-        </main>
-      </div>
+      
+      <main className="text-white h-full">
+        {matrixEnabled && (
+          <MatrixBackground opacity={matrixOpacity} />
+        )}
+        <Component {...pageProps} inputRef={inputRef} />
+      </main>
+      
       <Analytics />
     </>
   );
